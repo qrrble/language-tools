@@ -3,8 +3,13 @@
 - **CEDict_word_key_dict**: Python dictionary of the CEDict data, with word as the key.
 - **CEK60kCorpus_combined.txt**: All the sentences in the CEK60k corpus
 - **Ch_En_Kor_sentences.csv**: CEK60k corpus, in CSV format
+- **chn_character_frequency_dict**: Python dictionary of Chinese words (keys) and their respective frequencies (values)
 - **chn_character_word_dict.pkl**: Python dictionary of Chinese characters (keys) and words they appear in.
+ - **chn_char_radical_dict.pkl**: Python dictionary of Chinese characters (keys) and their radical decompositions.
 - **chn_hanzi_frequency.csv**: Frequency of 8000+ Chinese characters, in CSV format.
 - **ch_word_to_sentencenum_dict.pkl**: Python dictionary of segmented Chinese word (key) and sentence number (value) from the CEK60k corpus.
+- **heisig.csv**: CSV file of Chinese/Japanese hanzi/kanji characters with Heisig data.
+- **hsk_char.csv**: CSV of Chinese characters grouped by HSK level
+- **hsk_vocab.csv**: CSV of Chinese vocab words grouped by HSK level
 - **num_CEK60k_sentence_dict.pkl**: Python dictionary of sentence number (key) and Chinese/English/Korean sentences (value, stored as a dictionary) from the CEK60k corpus.
 - **pinyin_char_dict.pkl**: Python dictionary of pinyin values (keys) and all their associated Chinese characters.

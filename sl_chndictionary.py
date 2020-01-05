@@ -3,20 +3,13 @@ import pandas as pd
 import pickle
 
 # Reads in pickle files
-with open('data/ch_word_to_sentencenum_dict.pkl', 'rb') as handle:
-    ch_word_to_sentencenum_dict = pickle.load(handle)
-
-with open('data/num_CEK60k_sentence_dict.pkl', 'rb') as handle:
-    num_CEK60k_sentence_dict	 = pickle.load(handle)
-
-with open('data/CEDict_word_key_dict.pkl', 'rb') as handle:
-    CEDict_word_key_dict = pickle.load(handle)
-
-with open('data/chn_character_word_dict.pkl', 'rb') as handle:
-    chn_character_word_dict = pickle.load(handle)
-
-with open('data/pinyin_char_dict.pkl', 'rb') as handle:
-    pinyin_char_dict = pickle.load(handle)
+ch_word_to_sentencenum_dict = pickle.load(open('data/ch_word_to_sentencenum_dict.pkl', 'rb'))
+num_CEK60k_sentence_dict = pickle.load(open('data/num_CEK60k_sentence_dict.pkl', 'rb'))
+CEDict_word_key_dict = pickle.load(open('data/CEDict_word_key_dict.pkl', 'rb'))
+chn_character_word_dict = pickle.load(open('data/chn_character_word_dict.pkl', 'rb'))
+pinyin_char_dict = pickle.load(open('data/pinyin_char_dict.pkl', 'rb'))
+chn_char_radical_dict = pickle.load(open('data/chn_char_radical_dict.pkl', 'rb'))
+heisig_rsh_dict = pickle.load(open('data/heisig_rsh_dict.pkl', 'rb'))
 
 #########################
 
@@ -55,8 +48,24 @@ if search_option == 'Character' and pinyin != None:
 		if words_with_same_pinyin != None:
 			new_homophones = ''.join(words_with_same_pinyin)
 			homophones += new_homophones
-	homophones = ''.join(set(homophones))
-	st.write(homophones)
+	homophones = list(set(homophones))
+	homophones.sort()
+	st.write(''.join(homophones))
+
+#########################
+if search_option == 'Character':
+	st.subheader('Radical decomposition:')
+	radicals = chn_char_radical_dict[input_word]
+	st.write(''.join(radicals))
+
+#########################
+heisig_info = heisig_rsh_dict.get(input_word)
+if search_option == 'Character' and heisig_info!= None:
+	st.subheader('Heisig keyword:')
+	st.write(heisig_info['Keyword'])
+
+	st.subheader('Kanji equivalent:')
+	st.write(heisig_info['Kanji'])
 
 #########################
 if search_option == 'Character':
@@ -71,8 +80,8 @@ if search_option == 'Character':
 			x_info = CEDict_word_key_dict.get(x)
 			if x_info != None:
 				word_list.append(x)
-				word_pinyin.append(x_info['pinyin'])
-				word_definition.append(x_info['def'])
+				word_pinyin.append(x_info['pinyin'][0])
+				word_definition.append(x_info['def'][0])
 
 		wordlist_df = pd.DataFrame({'Word':word_list,'Pinyin':word_pinyin,'Definition':word_definition})
 		st.write(wordlist_df)
