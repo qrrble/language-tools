@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>NYT Bilingual Article Analyzer</title>
+    </head>
+    <body>
+
+        <h1>NYT Bilingual Article Analyzer<br>纽约时报双语文章分析器</h1>
+
+        <!--- --->
+        Enter an article URL:<br>
+        <form method="POST">
+		<input name="url" size="60">
+    	<input type="submit">
+		</form>
+
+        ... or select an article:
+        <form method="POST">
+        <select name="url">
+            {% for headline, url in frontpage_articles.items() %}
+            <option value="{{ url }}">{{ headline }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+        </form>
+
+    </body>
+</html>

@@ -1,27 +1,67 @@
-<html>
-    <head>
-        <title>NYT Bilingual Article Analyzer</title>
-    </head>
-    <body>
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYT Bilingual Article Analyzer</title>
+    <link rel="stylesheet" href={{ url_for('static',filename='styles/style.css') }}>
+    <script src={{ url_for('static',filename='styles/script.js') }}></script>
+</head>
 
-        <h1>NYT Bilingual Article Analyzer<br>纽约时报双语文章分析器</h1>
+<body>
+	<header>
+		<div id="logo">NYT Bilingual Article Analyzer </div><br><br>
+		<div id="logo">	纽约时报双语文章分析器 </div>
 
-        <!--- --->
-        Enter an article URL:<br>
-        <form method="POST">
-		<input name="url" size="60">
-    	<input type="submit">
-		</form>
+		
+		<nav>  
+			<ul>
+				<!--- <li><a href="javascript:history.back()">Back</a> -->
 
-        ... or select an article:
-        <form method="POST">
-        <select name="url">
-            {% for headline, url in frontpage_articles.items() %}
-            <option value="{{ url }}">{{ headline }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit">
-        </form>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<strong>A tool for annotating articles from the <a href= 'https://cn.nytimes.com/'>New York Times (Chinese version)</a> with vocabulary information and English translations.</strong>
+	</section>
+	<section id="pageContent">
+		<main role="main">
+			<article>
 
-    </body>
+				<h2>Enter an article URL:</h2>
+				        <!--- --->
+		        
+		        <form method="POST">
+				<input name="url" size="60">
+		    	<input type="submit">
+				</form>
+
+				<br>
+		        <h2>... or select an article:</h2>
+		        <form method="POST">
+		        <select name="url">
+		            {% for headline, url in frontpage_articles.items() %}
+		            <option value="{{ url }}">{{ headline }}</option>
+		            {% endfor %}
+		        </select>
+		        <input type="submit">
+		        </form>
+
+			</article>
+
+		</main>
+
+	</section>
+	<footer>
+
+		<address>
+
+		</address>
+	</footer>
+
+
+</body>
+
 </html>
+<!--- https://html5-templates.com/preview/html5-page-layout.html --->
